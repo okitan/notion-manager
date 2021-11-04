@@ -1,0 +1,26 @@
+{
+  "name": "notion-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "rm -rf lib && tsc",
+    "build:check": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/okitan/notion-manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/okitan/notion-manager/issues"
+  },
+  "homepage": "https://github.com/okitan/notion-manager#readme",
+  "devDependencies": {
+    "prettier": "2.4.1",
+    "typescript": "4.4.4"
+  }
+}
