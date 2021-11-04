@@ -44,6 +44,13 @@ export async function handler({
   const parameters = loadDefinition(definitionsDir, db);
 
   const response = await notionClient.databases.update(parameters);
+
+  console.log(
+    `Successfully updated database ${parameters.database_id}:
+${Object.entries(response.properties)
+  .map(([key, value]) => `${key}: ${value.type}`)
+  .join("\n")}`
+  );
 }
 
 export function commandModule({ definitionsDir }: { definitionsDir: string }) {
