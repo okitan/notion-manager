@@ -27,7 +27,7 @@ function buildBuilder<T>({ definitionsDir }: { definitionsDir?: string } = {}) {
       addNotionClientArguments(
         yargs
           .positional("db", { type: "string", demandOption: true })
-          .options({ definitionsDir: { type: "string", default: "./definitions" } })
+          .options({ definitionsDir: { type: "string", demandOption: true } })
       );
   }
 }
