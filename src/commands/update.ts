@@ -71,6 +71,8 @@ export async function handler({
   debug,
 }: yargs.Arguments<ExtractArgumentType<ReturnType<typeof builder>>>) {
   const schema = loadDefinition(definitionsDir, db);
+  const properties = schema.properties;
+  const titleKey = properties ? Object.keys(properties).find((key) => "title" in (properties[key] ?? {})) : undefined;
 
   const data = await loadData({ spreadsheetId, definitionsDir, sheetsClient, name: db, schema });
 
@@ -104,7 +106,11 @@ export async function handler({
       if (debug) console.log(JSON.stringify(parameters.properties, null, 2));
 
       if (update) {
-        console.log(`updating ${datum.$id}: ${datum.$title}(${target})`);
+        if (titleKey) {
+          console.log(`updating ${datum.$id}: ${datum[titleKey]}(${target})`);
+        } else {
+          console.log(`updating ${datum.$id}: (${target})`);
+        }
 
         await notionClient.pages.update(parameters);
       }
