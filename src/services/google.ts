@@ -1,5 +1,5 @@
 import { Auth } from "googleapis";
-import yargs from "yargs";
+import type yargs from "yargs";
 
 export type OAuth2ClientArguments = {
   oauth2Client: Auth.OAuth2Client;
@@ -39,17 +39,15 @@ export function addGoogleClientArguments<T>(yargs: yargs.Argv<T>) {
     .middleware(injectOAuth2Client);
 }
 
-export function injectOAuth2Client({
-  googleClientId,
-  googleClientSecret,
-  googleRefreshToken,
-}: {
-  googleClientId: string;
-  googleClientSecret: string;
-  googleRefreshToken: string;
-}): OAuth2ClientArguments {
-  const oauth2Client = new Auth.OAuth2Client(googleClientId, googleClientSecret);
-  oauth2Client.credentials = { refresh_token: googleRefreshToken };
+export function injectOAuth2Client(
+  args: {
+    googleClientId: string;
+    googleClientSecret: string;
+    googleRefreshToken: string;
+  } & OAuth2ClientArguments
+): void {
+  const oauth2Client = new Auth.OAuth2Client(args.googleClientId, args.googleClientSecret);
+  oauth2Client.credentials = { refresh_token: args.googleRefreshToken };
 
-  return { oauth2Client };
+  args.oauth2Client = oauth2Client;
 }
