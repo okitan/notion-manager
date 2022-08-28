@@ -1,13 +1,11 @@
-import { google, sheets_v4 } from "googleapis";
+import { google, type sheets_v4 } from "googleapis";
 
-import { OAuth2ClientArguments } from "./google";
+import type { OAuth2ClientArguments } from "./google";
 
 export type SheetsClientArgument = {
   sheetsClient: sheets_v4.Sheets;
 };
 
-export function injectSheetsClient({ oauth2Client }: OAuth2ClientArguments): SheetsClientArgument {
-  return {
-    sheetsClient: google.sheets({ version: "v4", auth: oauth2Client }),
-  };
+export function injectSheetsClient(args: OAuth2ClientArguments & SheetsClientArgument): void {
+  args.sheetsClient = google.sheets({ version: "v4", auth: args.oauth2Client });
 }

@@ -21,13 +21,13 @@
   "homepage": "https://github.com/okitan/notion-manager#readme",
   "devDependencies": {
     "@types/jest": "28.1.8",
-    "@types/yargs": "17.0.9",
+    "@types/yargs": "17.0.11",
     "prettier": "2.7.1",
     "ts-jest": "28.0.8",
-    "typescript": "4.7.4"
+    "typescript": "4.8.2"
   },
   "dependencies": {
-    "@okitan/google-sheet-to-notion": "^2.0.0",
+    "@okitan/google-sheet-to-notion": "^2.0.2",
     "yargs": "^17.2.1"
   }
 }

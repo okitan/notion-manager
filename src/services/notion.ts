@@ -1,6 +1,10 @@
+import type yargs from "yargs";
+
 import { Client } from "@notionhq/client";
 
-import type yargs from "yargs";
+export type NotioClienttArguments = {
+  notionClient: Client;
+};
 
 export function addNotionCredentialsOptions<T>(yargs: yargs.Argv<T>) {
   return yargs.options({
@@ -24,8 +28,6 @@ export function addNotionClientArguments<T>(yargs: yargs.Argv<T>) {
     .middleware(injectNotionClient);
 }
 
-export function injectNotionClient({ notionApiToken }: { notionApiToken: string }) {
-  const notionClient = new Client({ auth: notionApiToken });
-
-  return { notionClient };
+export function injectNotionClient(args: { notionApiToken: string } & NotioClienttArguments): void {
+  args.notionClient = new Client({ auth: args.notionApiToken });
 }
