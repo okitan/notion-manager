@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/okitan/notion-manager#readme",
   "devDependencies": {
-    "@types/jest": "29.0.2",
+    "@types/jest": "29.0.3",
     "@types/yargs": "17.0.12",
     "prettier": "2.7.1",
     "ts-jest": "29.0.1",
